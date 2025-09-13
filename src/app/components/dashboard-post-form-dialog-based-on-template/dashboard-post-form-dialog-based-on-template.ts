@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-dashboard-post-form-dialog',
+  selector: 'app-dashboard-post-form-dialog-based-on-template',
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule],
   templateUrl: './dashboard-post-form-dialog-based-on-template.html',
   styleUrl: './dashboard-post-form-dialog-based-on-template.css'
