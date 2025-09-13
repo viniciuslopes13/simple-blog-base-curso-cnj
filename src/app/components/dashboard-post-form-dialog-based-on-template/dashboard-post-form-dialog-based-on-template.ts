@@ -8,10 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-dashboard-post-form-dialog',
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule],
-  templateUrl: './dashboard-post-form-dialog.html',
-  styleUrl: './dashboard-post-form-dialog.css'
+  templateUrl: './dashboard-post-form-dialog-based-on-template.html',
+  styleUrl: './dashboard-post-form-dialog-based-on-template.css'
 })
-export class DashboardPostFormDialog {
+export class DashboardPostFormDialogBasedOnTemplate {
 
   author:string = 'Vinícius';
   title:string = '';

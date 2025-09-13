@@ -3,12 +3,12 @@ import { MatTableModule } from '@angular/material/table';
 import { Post } from '../../models/post';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { DashboardPostFormDialog } from '../dashboard-post-form-dialog/dashboard-post-form-dialog';
+import { DashboardPostFormDialogBasedOnTemplate } from '../dashboard-post-form-dialog-based-on-template/dashboard-post-form-dialog-based-on-template';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dahsboard-post-tab',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, DashboardPostFormDialog],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, DashboardPostFormDialogBasedOnTemplate],
   templateUrl: './dahsboard-post-tab.html',
   styleUrl: './dahsboard-post-tab.css'
 })
@@ -22,7 +22,7 @@ export class DahsboardPostTab {
   displayedColumns = ["id", "author", "title", "date", "edit", "delete"];
 
   openPostFormDialog(){
-    const dialogRef = this.dialog.open(DashboardPostFormDialog);
+    const dialogRef = this.dialog.open(DashboardPostFormDialogBasedOnTemplate);
     dialogRef.afterClosed().subscribe((result)=>{
       console.log(result);
     })
