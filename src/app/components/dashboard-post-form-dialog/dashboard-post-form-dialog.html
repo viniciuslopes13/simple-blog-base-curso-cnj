@@ -1,29 +1,33 @@
 <div class="dialog-container">
     <h2 mat-dialog-title>Nova Postagem</h2>
     <mat-dialog-content>
-        <form class="form-post-dialog">
+        <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
 
             <mat-form-field>
                 <mat-label>Author</mat-label>
-                <input matInput>
+                <input matInput name="author" [(ngModel)]="author" required>
+                <mat-error>Você deve inserir o nome do author</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Title</mat-label>
-                <input matInput>
+                <input matInput name="title" [(ngModel)]="title" required>
+                <mat-error>Você deve inserir o título</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Date</mat-label>
-                <input matInput>
+                <input matInput name="date" [(ngModel)]="date" required>
+                <mat-error>Você deve inserir uma data</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Content</mat-label>
-                <textarea matInput rows="5"></textarea>
+                <textarea matInput rows="5" name="content" [(ngModel)]="content" required></textarea>
+                <mat-error>Você deve inserir algum conteúdo</mat-error>
             </mat-form-field>
 
-            <button mat-flat-button>Salvar</button>
+            <button mat-flat-button [disabled]="!postForm.form.valid">Salvar</button>
 
         </form>
     </mat-dialog-content>
