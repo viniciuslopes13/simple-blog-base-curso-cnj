@@ -1,0 +1,13 @@
+mat-form-field {
+    width: 30rem;
+}
+
+form {
+    display: grid;
+
+}
+
+.dialog-container {
+    padding: 1rem;
+}
+
