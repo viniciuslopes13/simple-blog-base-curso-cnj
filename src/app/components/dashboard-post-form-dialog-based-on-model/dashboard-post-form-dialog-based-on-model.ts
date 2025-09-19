@@ -1,9 +1,9 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PostService } from '../../services/post-service';
@@ -19,9 +19,13 @@ import { DateTime } from 'luxon';
 })
 export class DashboardPostFormDialogBasedOnModel {
   
+  formTitle = 'Nova Postagem (abordagem modelo)'
+  submitButtonLabel = 'Salvar'
+
   constructor(
     private dialogRef: DialogRef<DashboardPostFormDialogBasedOnModel>,
-    private postService: PostService
+    private postService: PostService,
+    @Inject(MAT_DIALOG_DATA) public data: {id: string}
   ){}
 
   postForm = new FormGroup({
@@ -30,6 +34,13 @@ export class DashboardPostFormDialogBasedOnModel {
     date: new FormControl(DateTime.now(), Validators.required),
     content: new FormControl('', Validators.required)
   });
+
+  ngOnInit(){
+    if(this.data){
+      this.formTitle = 'Editar Postagem'
+      this.submitButtonLabel = 'Editar'
+    }
+  }
 
   onSubmit(){
     const author = this.postForm.value.author!!;

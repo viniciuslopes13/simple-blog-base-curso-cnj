@@ -1,5 +1,5 @@
 <div class="dialog-container">
-    <h2 mat-dialog-title>Nova Postagem (abordagem modelo) </h2>
+    <h2 mat-dialog-title>{{formTitle}}</h2>
     <mat-dialog-content>
         <form  [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
@@ -29,7 +29,7 @@
                 <mat-error>Você deve inserir algum conteúdo</mat-error>
             </mat-form-field>
 
-            <button mat-flat-button [disabled]="!postForm.valid">Salvar</button>
+            <button mat-flat-button [disabled]="!postForm.valid">{{submitButtonLabel}}</button>
 
         </form>
     </mat-dialog-content>

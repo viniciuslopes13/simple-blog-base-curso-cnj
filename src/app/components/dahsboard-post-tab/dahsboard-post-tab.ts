@@ -23,22 +23,41 @@ export class DahsboardPostTab {
   posts: Post[] = [];
   displayedColumns = ["id", "author", "title", "date", "edit", "delete"];
 
-  async  ngOnInit(){
-    this.posts = await this.postService.findAll();
+  ngOnInit(){
+    this.loadPosts();
   }
 
-  openPostFormDialog(){
+  openNewPostFormDialogTemplate(){
     const dialogRef = this.dialog.open(DashboardPostFormDialogBasedOnTemplate);
     dialogRef.afterClosed().subscribe((result)=>{
       console.log(result);
     })
   }
 
-  openPostFormDialogModel(){
+  openNewPostFormDialogModel(){
     const dialogRef = this.dialog.open(DashboardPostFormDialogBasedOnModel);
     dialogRef.afterClosed().subscribe((result)=>{
+      this.loadPosts();
       console.log(result);
     });
+  }
+
+  openEditPostFormDialogModel(id: string){
+    const dialogRef = this.dialog.open(DashboardPostFormDialogBasedOnModel, {id});
+    dialogRef.afterClosed().subscribe((result)=>{
+      this.loadPosts();
+      console.log(result);
+    });
+  }
+
+  loadPosts(){
+    this.postService.findAll()
+    .then((response)=>{
+      this.posts = response;
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
   }
 
 }

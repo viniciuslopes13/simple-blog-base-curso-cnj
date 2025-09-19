@@ -25,4 +25,25 @@ export class PostService {
       .catch((error) => { return error; });
   }
 
+  updatePost(post: Post): Promise<void> {
+    return this.httpClient.put(`${this.url_base}/posts/${post.id}`, post)
+      .toPromise()
+      .then((response) => { return response; })
+      .catch((error) => { return error; });
+  }
+
+  deletePost(id: string): Promise<void> {
+    return this.httpClient.delete(`${this.url_base}/posts/${id}`)
+      .toPromise()
+      .then((response) => { return response; })
+      .catch((error) => { return error; });
+  }
+
+  findPostById(id: string): Promise<Post> {
+    return this.httpClient.get<Post>(`${this.url_base}/posts/${id}`)
+      .toPromise()
+      .then((response) => { return response; })
+      .catch((error) => { return error; });
+  }
+
 }
