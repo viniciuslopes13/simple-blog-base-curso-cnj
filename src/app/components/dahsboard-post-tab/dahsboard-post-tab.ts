@@ -7,10 +7,12 @@ import { DashboardPostFormDialogBasedOnTemplate } from '../dashboard-post-form-d
 import { MatDialog } from '@angular/material/dialog';
 import { DashboardPostFormDialogBasedOnModel } from '../dashboard-post-form-dialog-based-on-model/dashboard-post-form-dialog-based-on-model';
 import { PostService } from '../../services/post-service';
+import { PostDeleteDialog } from '../post-delete-dialog/post-delete-dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dahsboard-post-tab',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, DashboardPostFormDialogBasedOnTemplate],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, DashboardPostFormDialogBasedOnTemplate, DatePipe],
   templateUrl: './dahsboard-post-tab.html',
   styleUrl: './dahsboard-post-tab.css'
 })
@@ -49,6 +51,19 @@ export class DahsboardPostTab {
     dialogRef.afterClosed().subscribe((result)=>{
       this.loadPosts();
       console.log(result);
+    });
+  }
+
+  deletePostDialog(id: string){
+    const dialogRef = this.dialog.open(PostDeleteDialog, {
+      data: {id}
+    });
+    dialogRef.afterClosed().subscribe((result)=>{
+      if(result == "true"){
+        this.postService.deletePost(id).subscribe(()=>{
+          this.loadPosts();
+        })
+      }
     });
   }
 
