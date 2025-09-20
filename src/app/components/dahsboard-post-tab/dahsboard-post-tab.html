@@ -33,7 +33,7 @@
 
     <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let post"><a mat-stroked-button>Editar</a></td>
+        <td mat-cell *matCellDef="let post"><a mat-stroked-button (click)="openEditPostFormDialogModel(post.id)">Editar</a></td>
     </ng-container>
 
     <ng-container matColumnDef="delete">

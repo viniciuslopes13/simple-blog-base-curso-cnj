@@ -43,7 +43,9 @@ export class DahsboardPostTab {
   }
 
   openEditPostFormDialogModel(id: string){
-    const dialogRef = this.dialog.open(DashboardPostFormDialogBasedOnModel, {id});
+    const dialogRef = this.dialog.open(DashboardPostFormDialogBasedOnModel, {
+      data: {id}
+    });
     dialogRef.afterClosed().subscribe((result)=>{
       this.loadPosts();
       console.log(result);
@@ -51,12 +53,13 @@ export class DahsboardPostTab {
   }
 
   loadPosts(){
-    this.postService.findAll()
-    .then((response)=>{
-      this.posts = response;
-    })
-    .catch((error)=>{
-      console.log(error)
+    this.postService.findAll().subscribe({
+      next: (response) => {
+        this.posts = response;
+      },
+      error: (error) => {
+        console.log(error);
+      }
     })
   }
 
