@@ -5,5 +5,5 @@ import { Dashboard } from './pages/dashboard/dashboard';
 export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: '/blog'},
     {path: 'blog', component: Blog},
-    {path: 'dashboard', component: Dashboard}
+    {path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.routes').then(m => m.ROUTES)}
 ];
