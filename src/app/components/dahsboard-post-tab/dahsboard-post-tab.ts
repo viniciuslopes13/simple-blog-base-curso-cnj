@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Post } from '../../models/post';
 import { MatDialog } from '@angular/material/dialog';
 import { DashboardPostFormDialogBasedOnTemplate } from '../dashboard-post-form-dialog-based-on-template/dashboard-post-form-dialog-based-on-template';
@@ -20,7 +20,7 @@ export class DahsboardPostTab {
 
   }
 
-  posts: Post[] = [];
+  posts = signal<Post[]>([]);
   displayedColumns = ["id", "author", "title", "date", "edit", "delete"];
 
   ngOnInit(){
@@ -68,7 +68,7 @@ export class DahsboardPostTab {
   loadPosts(){
     this.postService.findAll().subscribe({
       next: (response) => {
-        this.posts = response;
+        this.posts.set(response);
       },
       error: (error) => {
         console.log(error);
